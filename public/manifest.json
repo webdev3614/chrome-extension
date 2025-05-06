@@ -1,0 +1,10 @@
+{
+    "manifest_version":3,
+    "name":"Looter Chrome Extension",
+    "version":"1.0.0",
+    "description": "A simple trading app as a chrome extension",
+    "action": {
+        "default_popup": "index.html"
+    },
+    "permissions":[]
+}
