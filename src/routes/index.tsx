@@ -17,6 +17,15 @@ export const routes: RouteObject[] = [
                         Component: SigninPage
                     }
                 }
+            },
+            {
+                path:"home",
+                lazy: async () => {
+                    const { HomePage } = await import("@/pages/home-page")
+                    return {
+                        Component: HomePage
+                    }
+                }
             }
         ]
     }
