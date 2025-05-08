@@ -1,15 +1,16 @@
-import { ReactNode,JSX, useState } from "react";
+import { ReactNode,JSX } from "react";
 import AuthContext, { Auth } from "./context";
 import { postData } from "@/api/axios";
 import { toast } from "react-toastify";
+import { useCustomState } from "@/hooks/use-state";
 
 const AuthProvider = ({children}:{children:ReactNode}):JSX.Element => {
-    const [auth,setAuth] = useState<Auth>()
-    const [loading,setLoading] = useState<boolean>(false)
-    const [error,setError] = useState<string>()
+    const [auth,setAuth] = useCustomState<Auth>("auth")
+    const [loading,setLoading] = useCustomState<boolean>("auth.loading")
+    const [error,setError] = useCustomState<string>("auth.error")
     const handleError = (err:string) => {
         toast.error(err)
-        setError(err)
+        setError(err as string)
     }
     const signin = (accessCode:string) => {
         setLoading(true)
@@ -17,7 +18,7 @@ const AuthProvider = ({children}:{children:ReactNode}):JSX.Element => {
             if(result.err){
                 handleError(result.err)
             }else{
-                setAuth(result.data)
+                setAuth(result.data.data)
             }
         }).catch((err)=>{
             handleError(err)
@@ -26,7 +27,7 @@ const AuthProvider = ({children}:{children:ReactNode}):JSX.Element => {
         })
     }
     return (
-        <AuthContext.Provider value={{auth,loading,error,signin}}>
+        <AuthContext.Provider value={{auth, loading: loading || false, error, signin}}>
             {
                 children
             }

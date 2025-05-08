@@ -5,6 +5,6 @@ export const app = {
 export const dev = {
     botName:"lootertianbot",
     server:  {
-        url:"http://160.202.131.23:8000/extension"
+        url:"http://160.202.131.23:8085/extension"
     }
 }

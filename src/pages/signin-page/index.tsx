@@ -1,16 +1,16 @@
 import { Spinner } from "@/components/core/loading";
 import { SigninForm } from "@/components/signin";
 import { useAuth } from "@/context/auth-provider/hooks";
+import { useCustomNavigate } from "@/hooks/use-navigate";
 import { Box } from "@mui/material";
 import { JSX, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 export const SigninPage = ():JSX.Element => {
     const {auth,loading} = useAuth()
-    const navigate = useNavigate()
+    const navigate = useCustomNavigate()
     useEffect(()=>{
         if(auth){
-            navigate('/home')
+            navigate('/trade')
         }
     })
     return (

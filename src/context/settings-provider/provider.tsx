@@ -1,11 +1,12 @@
-import { ReactNode,JSX, useState, useEffect } from "react";
+import { ReactNode,JSX, useEffect } from "react";
 import SettingsContext, { Settings } from "./context";
 import { app } from "@/config";
+import { useCustomState } from "@/hooks/use-state";
 
 const SettingsProvider = ({children}:{children:ReactNode}):JSX.Element => {
-    const [settings,setSettings] = useState<Settings>()
-    const [loading,setLoading] = useState<boolean>(true)
-    const [error,setError] = useState<string>()
+    const [settings,setSettings] = useCustomState<Settings>("settings")
+    const [loading,setLoading] = useCustomState<boolean>("settings.loading")
+    const [error,setError] = useCustomState<string>("settings.error")
     useEffect(()=>{
         if(!settings){
             setLoading(true)
@@ -17,9 +18,9 @@ const SettingsProvider = ({children}:{children:ReactNode}):JSX.Element => {
                 setLoading(false)
             }
         }
-    },[settings])
+    })
     return (
-        <SettingsContext.Provider value={{settings,loading,error}}>
+        <SettingsContext.Provider value={{settings,loading: loading || false,error}}>
             {
                 children
             }
