@@ -1,0 +1,15 @@
+import { createContext } from "react";
+import { BasicContextType } from "../basic-context-type";
+
+export interface WalletInfo {
+    index:number,
+    balance: number
+}
+
+export interface WalletContextType extends BasicContextType {
+    wallets: WalletInfo[]|undefined
+}
+
+const WalletContext = createContext<WalletContextType|undefined>(undefined)
+
+export default WalletContext

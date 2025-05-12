@@ -1,3 +1,4 @@
 export enum UIType {
-    TEXTFIELD
+    TEXTFIELD,
+    SELECT
 }

@@ -1,12 +1,9 @@
 import { Button, Stack, Typography } from "@mui/material";
-import { JSX, useEffect } from "react";
+import { JSX } from "react";
 import { useTranslation } from "react-i18next";
 
 export const TradePage = ():JSX.Element => {
     const {t} = useTranslation()
-    useEffect(()=>{
-        
-    })
     return (
         <Stack sx={{bgcolor:"#000"}}>
             <Stack  display="flex" 
@@ -15,7 +12,7 @@ export const TradePage = ():JSX.Element => {
                 justifyContent="center" 
                 alignItems="center">
                 <Stack justifyContent="center" alignItems="center" padding={5}>
-                    <Typography variant="body1" fontWeight="bold" fontSize={32} color="#fff">
+                    <Typography variant="body1" fontWeight="bold" fontSize={32} color="f4f2f3">
                         $1050.55
                     </Typography>
                     <Typography variant="body2" fontSize={24} color="#3ded47">
@@ -23,13 +20,13 @@ export const TradePage = ():JSX.Element => {
                     </Typography>
                 </Stack>
                 <Stack direction="row" sx={{flexGrow:1}} spacing={2}>
-                    <Button variant="contained" sx={{bgcolor:"#555",color:"#fff"}}>
+                    <Button variant="contained" sx={{bgcolor:"#555",color:"f4f2f3"}}>
                         {t("buy")}
                     </Button>
-                    <Button variant="contained" sx={{bgcolor:"#555",color:"#fff"}}>
+                    <Button variant="contained" sx={{bgcolor:"#555",color:"f4f2f3"}}>
                         {t("sell")}
                     </Button>
-                    <Button variant="contained" sx={{bgcolor:"#555",color:"#fff"}}>
+                    <Button variant="contained" sx={{bgcolor:"#555",color:"f4f2f3"}}>
                         {t("send")}
                     </Button>
                 </Stack>

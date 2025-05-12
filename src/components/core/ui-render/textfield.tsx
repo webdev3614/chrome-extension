@@ -1,4 +1,4 @@
-import { FormControl, FormHelperText, OutlinedInput } from "@mui/material";
+import { FormControl, FormHelperText, OutlinedInput, SxProps } from "@mui/material";
 import { ChangeEvent, JSX, KeyboardEvent } from "react";
 import { Control, Controller, FieldErrors } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -14,7 +14,7 @@ export const CustomTextField = ({
     item:any,
     control:Control<any>,
     errors:FieldErrors<any>,
-    sx:any,
+    sx?:SxProps,
     onSubmit?:()=>void,
     onChange?:(e:ChangeEvent)=>void
 }):JSX.Element => {
@@ -29,7 +29,7 @@ export const CustomTextField = ({
         <Controller control={control}
         name={item.name}
         render={({field})=>(
-                <FormControl error={Boolean(errors[item.name])} fullWidth>
+                <FormControl error={Boolean(errors[item.name])} sx={{justifyContent:"center",alignItems:"center"}} fullWidth>
                     <OutlinedInput {...field} 
                         placeholder={t(item.placeholder)} 
                         sx={sx} 

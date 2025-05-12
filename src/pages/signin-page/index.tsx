@@ -10,7 +10,7 @@ export const SigninPage = ():JSX.Element => {
     const navigate = useCustomNavigate()
     useEffect(()=>{
         if(auth){
-            navigate('/trade')
+            navigate('/home')
         }
     })
     return (

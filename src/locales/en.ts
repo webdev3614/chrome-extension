@@ -6,6 +6,8 @@ export const en = {
         buy:"Buy",
         sell:"Sell",
         send:"Send",
+        connected: "Connected",
+        referrals: "Referrals",
     },
     translations: {
 

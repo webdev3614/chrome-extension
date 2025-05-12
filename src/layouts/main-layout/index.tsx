@@ -3,7 +3,7 @@ import { ReactNode,JSX } from "react";
 
 export const MainLayout = ({children}:{children:ReactNode}):JSX.Element => {
     return (
-        <Stack bgcolor="#333" >
+        <Stack bgcolor="#262626">
             {children}
         </Stack>
     )

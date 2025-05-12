@@ -1,0 +1,1 @@
+import{r as o,C as r,D as n}from"./main-ZBexmBpL.js";const c=()=>{const t=o.useContext(r);if(!t)throw new Error("useAuth must be used within an AuthProvider");return t},g=()=>{const t=n();return e=>{const s=localStorage.getItem("urls"),a=s?JSON.parse(s):[];a.pop()!==e&&localStorage.setItem("urls",JSON.stringify([...a,e])),t(e)}};export{g as a,c as u};

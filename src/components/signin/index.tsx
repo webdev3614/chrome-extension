@@ -35,41 +35,45 @@ export const SigninForm = ():JSX.Element => {
         window.open(`https://t.me/${dev.botName}?start=accesscode`, "_blank")
     }
     return (
-        <Stack padding={2}>
+        <Stack padding={1} spacing={1} justifyContent="center" alignItems="center">
             <Button variant="text"
-                sx={{
-                    marginBottom:"20px", 
-                    color:"#fff",
+                sx={{ 
+                    color:"f4f2f3",
                     bgcolor:"#444", 
-                    borderRadius:"24px",
-                    fontSize:"24px",
-                    padding:"5px 20px"
+                    borderRadius:"15px",
+                    fontSize:"12px",
+                    padding:"5px 20px",
+                    width:"210px",
+                    height:"38px"
                 }} 
-                startIcon={<PaperPlaneTilt/>} 
-                fullWidth
+                startIcon={<PaperPlaneTilt size="30px"/>} 
                 onClick={navigateTG}>
                 {t("connect_account")}
             </Button>
             <form onSubmit={handleSubmit(onSubmit)}>
-                {
-                    UI.map((item)=>{
-                        return <UIRender 
-                                    key={item.name} 
-                                    item={item} 
-                                    control={control} 
-                                    errors={errors} 
-                                    sx={{
-                                        color:"#fff",
-                                        borderRadius:"24px",
-                                        backgroundColor: "#444",
-                                        fontSize:"20px",
-                                    }}
-                                    onSubmit={onCustomSubmit}
-                                    onChange={onCustomSubmit}
-                                />
-                    })
-                }
-            </form>
+                    <Stack justifyContent="center" alignItems="center">
+                        {
+                            UI.map((item)=>{
+                                return <UIRender 
+                                            key={item.name} 
+                                            item={item} 
+                                            control={control} 
+                                            errors={errors} 
+                                            sx={{
+                                                color:"f4f2f3",
+                                                fontSize:"12px",
+                                                borderRadius:"15px",
+                                                width:"167px",
+                                                height:"32px",
+                                                backgroundColor: "#444"
+                                            }}
+                                            onSubmit={onCustomSubmit}
+                                            onChange={onCustomSubmit}
+                                        />
+                            })
+                        }
+                    </Stack>
+                </form>
         </Stack>
     )
 }
