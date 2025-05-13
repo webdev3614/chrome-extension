@@ -1,11 +1,16 @@
+import { createContext } from "react";
 import { BasicContextType } from "../basic-context-type";
 
 export interface TradeSettings {
-    walletIndex: number,
-    base_token: string,
-    quote_token: string,
+    chain_id: number,
+    wallet_index: number
 }
 
 export interface TradeContextType extends BasicContextType {
-    tradeSettings:TradeSettings
+    tradeSettings:TradeSettings|undefined,
+    updateTradeSettings: (newTradeSettings:TradeSettings) => void
 }
+
+const TradeContext = createContext<TradeContextType|undefined>(undefined);
+
+export default TradeContext

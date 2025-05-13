@@ -3,11 +3,11 @@ import { BasicContextType } from "../basic-context-type";
 
 export interface ChainInfo {
     name: string,
-    chain_id: number
+    chain_id: number,
+    decimal: number
 }
-
 export interface ChainContextType extends BasicContextType {
-    chains:ChainInfo[]|undefined
+    chains: ChainInfo[] | undefined
 }
 
 const ChainContext = createContext<ChainContextType|undefined>(undefined)

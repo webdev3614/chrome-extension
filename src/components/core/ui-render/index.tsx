@@ -24,7 +24,7 @@ export const UIRender = ({item,control,errors,sx,onSubmit,onChange}:{ item:any, 
                         control={control} 
                         errors={errors} 
                         sx={sx}
-                        onChange={onChange}
+                        onSubmit={onSubmit} 
                     />
         default:
             return (<></>)

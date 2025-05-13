@@ -38,8 +38,8 @@ export const SigninForm = ():JSX.Element => {
         <Stack padding={1} spacing={1} justifyContent="center" alignItems="center">
             <Button variant="text"
                 sx={{ 
-                    color:"f4f2f3",
-                    bgcolor:"#444", 
+                    color:"#f4f2f3",
+                    bgcolor:"#363636", 
                     borderRadius:"15px",
                     fontSize:"12px",
                     padding:"5px 20px",
@@ -60,12 +60,13 @@ export const SigninForm = ():JSX.Element => {
                                             control={control} 
                                             errors={errors} 
                                             sx={{
-                                                color:"f4f2f3",
+                                                color:"#f4f2f3",
                                                 fontSize:"12px",
                                                 borderRadius:"15px",
                                                 width:"167px",
                                                 height:"32px",
-                                                backgroundColor: "#444"
+                                                bgcolor: "#363636",
+                                                overflow:"hidden"
                                             }}
                                             onSubmit={onCustomSubmit}
                                             onChange={onCustomSubmit}

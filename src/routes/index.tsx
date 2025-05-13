@@ -3,6 +3,8 @@ import { SigninLayout } from "../layouts/siginin-layout";
 import { TradeLayout } from "@/layouts/trade-layout";
 import { MainLayout } from "@/layouts/main-layout";
 import ChainProvider from "@/context/chain-provider/provider";
+import TradeProvider from "@/context/trade-provider/provider";
+import WalletProvider from "@/context/wallet-provider/provider";
 
 export const routes: RouteObject[] = [
     {
@@ -42,11 +44,15 @@ export const routes: RouteObject[] = [
             {
                 path:"trade",
                 element: (
+                    <TradeProvider>
                         <ChainProvider>
-                            <TradeLayout>
-                                    <Outlet/>
-                            </TradeLayout>
+                            <WalletProvider>
+                                <TradeLayout>
+                                        <Outlet/>
+                                </TradeLayout>
+                            </WalletProvider>
                         </ChainProvider>
+                    </TradeProvider>
                 ),
                 children: [
                     {

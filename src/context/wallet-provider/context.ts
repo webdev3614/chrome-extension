@@ -2,7 +2,8 @@ import { createContext } from "react";
 import { BasicContextType } from "../basic-context-type";
 
 export interface WalletInfo {
-    index:number,
+    chain_id: number,
+    wallet_index:number,
     balance: number
 }
 
