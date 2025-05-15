@@ -1,8 +1,12 @@
 import { ReactNode,JSX, useState, useEffect } from "react";
 import ChainContext, { ChainInfo } from "./context";
 import { fetchData } from "@/api/axios";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../auth-provider/hooks";
 
 const ChainProvider = ({children}:{children:ReactNode}):JSX.Element => {
+    const navigate = useNavigate()
+    const {initAuth} = useAuth()
     const [chains,setChains] = useState<ChainInfo[]>()
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState<string>()
@@ -21,8 +25,14 @@ const ChainProvider = ({children}:{children:ReactNode}):JSX.Element => {
         })
     }
     useEffect(()=>{
-        if(!chains){
+        if(!chains&&!error){
             loadChainInfo()
+        }
+    })
+    useEffect(()=>{
+        if(error === "Request failed with status code 401"){
+            initAuth()
+            navigate("/")
         }
     })
     return (

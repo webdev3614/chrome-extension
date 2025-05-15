@@ -29,7 +29,7 @@ const WalletProvider = ({children}:{children:ReactNode}):JSX.Element => {
         }
     }
     useEffect(()=>{
-        if(!wallets || (wallets&&wallets[0]?.chain_id !== tradeSettings?.chain_id)){
+        if((!wallets || (wallets&&wallets[0]?.chain_id !== tradeSettings?.chain_id)&&!error)){
            loadWalletInfo()
         }
     })

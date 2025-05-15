@@ -4,7 +4,7 @@ import { BasicContextType } from "../basic-context-type";
 export interface ChainInfo {
     name: string,
     chain_id: number,
-    decimal: number
+    decimals: number
 }
 export interface ChainContextType extends BasicContextType {
     chains: ChainInfo[] | undefined

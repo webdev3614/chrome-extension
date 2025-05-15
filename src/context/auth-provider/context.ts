@@ -7,7 +7,8 @@ export interface Auth{
 
 export interface AuthContextType extends BasicContextType {
     auth: Auth | undefined,
-    signin:(accessCode:string) => void
+    signin:(accessCode:string) => void,
+    initAuth:()=>void
 }
 
 const AuthContext = createContext<AuthContextType|undefined>(undefined)

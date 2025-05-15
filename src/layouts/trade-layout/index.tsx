@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useWallet } from "@/context/wallet-provider/hooks";
 import { useTrade } from "@/context/trade-provider/hooks";
 import { Spinner } from "@/components/core/loading";
+import { formatNumber } from "@/utils/maath";
 
 const defaultValues = {
     chain_id: 1399811149,
@@ -45,16 +46,19 @@ export const TradeLayout = ({children}:{children:ReactNode}):JSX.Element => {
     const onCustomSubmit = () => {
         handleSubmit(onSubmit)()
     }
-    console.log("rerender",tradeSettings)
     useEffect(()=>{
         if(tradeSettings){
             reset({
                 chain_id:tradeSettings.chain_id,
                 wallet_index: tradeSettings.wallet_index
             })
+        }else{
+            updateTradeSettings(defaultValues)
         }
-    },[tradeSettings,reset])
+    },[tradeSettings,reset,updateTradeSettings])
+
     if(chains&&wallets&&tradeSettings){
+        const chain = chains.find((val)=>val.chain_id === tradeSettings.chain_id)
         return (
             <Stack sx={{width:"360px", height:"600px"}} divider={<Divider sx={{bgcolor:"#363636",borderWidth:"1.5px"}}/>}>
                 <Stack direction="row" padding={1}>
@@ -101,10 +105,13 @@ export const TradeLayout = ({children}:{children:ReactNode}):JSX.Element => {
                                         })):[]
                                     }:{
                                         ...item,
-                                        options:wallets?wallets.map((val)=>({
-                                            label:`${val.balance}`,
-                                            value:val.wallet_index
-                                        })):[]
+                                        options:wallets?wallets.map((val)=>{
+                                            const balance = formatNumber(val.balance,chain?.decimals)
+                                            return {
+                                                label:`${balance}`,
+                                                value:val.wallet_index
+                                            }
+                                        }):[]
                                     }
                                     return <UIRender 
                                             key={item.name}

@@ -8,7 +8,7 @@ const SettingsProvider = ({children}:{children:ReactNode}):JSX.Element => {
     const [loading,setLoading] = useState<boolean>(false)
     const [error,setError] = useState<string>()
     useEffect(()=>{
-        if(!settings){
+        if(!settings&&!error){
             setLoading(true)
             try {
                 setSettings(app)
@@ -18,7 +18,7 @@ const SettingsProvider = ({children}:{children:ReactNode}):JSX.Element => {
                 setLoading(false)
             }
         }
-    },[settings,setSettings])
+    },[settings,setSettings,error])
     return (
         <SettingsContext.Provider value={{settings,loading,error}}>
             {

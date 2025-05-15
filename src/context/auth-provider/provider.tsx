@@ -26,8 +26,11 @@ const AuthProvider = ({children}:{children:ReactNode}):JSX.Element => {
             setLoading(false)
         })
     }
+    const initAuth = () => {
+        setAuth(undefined)
+    }
     return (
-        <AuthContext.Provider value={{auth, loading, error, signin}}>
+        <AuthContext.Provider value={{auth, loading, error, signin, initAuth}}>
             {
                 children
             }

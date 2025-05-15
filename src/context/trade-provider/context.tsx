@@ -7,7 +7,7 @@ export interface TradeSettings {
 }
 
 export interface TradeContextType extends BasicContextType {
-    tradeSettings:TradeSettings|undefined,
+    tradeSettings: TradeSettings | undefined,
     updateTradeSettings: (newTradeSettings:TradeSettings) => void
 }
 
