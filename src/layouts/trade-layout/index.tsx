@@ -15,7 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useWallet } from "@/context/wallet-provider/hooks";
 import { useTrade } from "@/context/trade-provider/hooks";
 import { Spinner } from "@/components/core/loading";
-import { formatNumber } from "@/utils/maath";
+import { formatNumber, readableNumber } from "@/utils/math";
 
 const defaultValues = {
     chain_id: 1399811149,
@@ -29,8 +29,8 @@ const schema = zod.object({
 
 export const TradeLayout = ({children}:{children:ReactNode}):JSX.Element => {
     const {t} = useTranslation()
-    const {chains} = useChain()
-    const {wallets} = useWallet()
+    const {chains,loading:loadingChains} = useChain()
+    const {wallets,loading:loadingWallets} = useWallet()
     const {tradeSettings,updateTradeSettings} = useTrade()
     const {control,formState:{errors},reset,handleSubmit} = useForm({
         defaultValues,
@@ -101,15 +101,18 @@ export const TradeLayout = ({children}:{children:ReactNode}):JSX.Element => {
                                         ...item,
                                         options:chains?chains.map((val)=>({
                                             label:val.name,
-                                            value:val.chain_id
+                                            value:val.chain_id,
                                         })):[]
                                     }:{
                                         ...item,
                                         options:wallets?wallets.map((val)=>{
-                                            const balance = formatNumber(val.balance,chain?.decimals)
+                                            const readableBalance = chain?readableNumber(val.balance,chain.decimals):val.balance
+                                            const balance = formatNumber(readableBalance,3)
                                             return {
                                                 label:`${balance}`,
-                                                value:val.wallet_index
+                                                value:val.wallet_index,
+                                                chain_id:chain?.chain_id,
+                                                address:val.address
                                             }
                                         }):[]
                                     }
@@ -120,7 +123,7 @@ export const TradeLayout = ({children}:{children:ReactNode}):JSX.Element => {
                                                 color:"#f4f2f3",
                                                 bgcolor:"#363636", 
                                                 borderRadius:"15px",
-                                                width:"150px",
+                                                width:"160px",
                                                 height:"40px",
                                                 fontSize:"18px"
                                             }} 
@@ -140,6 +143,7 @@ export const TradeLayout = ({children}:{children:ReactNode}):JSX.Element => {
                 <Stack direction="row" sx={{height:"48px"}}>
                     
                 </Stack>
+                <Spinner loading={loadingChains||loadingWallets}/>
             </Stack>
         )
     }else{

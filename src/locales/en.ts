@@ -8,6 +8,8 @@ export const en = {
         send:"Send",
         connected: "Connected",
         referrals: "Referrals",
+        wallet_address_copied:"Wallet Address Copied",
+        token_address_copied:"Token Address Copied",
     },
     translations: {
 
